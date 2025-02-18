@@ -1,32 +1,23 @@
-import 'dart:convert';
-
 class EnderecoModel {
-  final String cep;
   final String logradouro;
-  final String complemento;
+  final String bairro;
+  final String localidade;
+  final String uf;
 
   EnderecoModel({
-    required this.cep,
     required this.logradouro,
-    required this.complemento,
+    required this.bairro,
+    required this.localidade,
+    required this.uf,
   });
 
-  Map<String, dynamic> toMap() {
-    return {
-      'cep': cep,
-      'logradouro': logradouro,
-      'complemento': complemento,
-    };
-  }
-
-  factory EnderecoModel.fromMap(Map<String, dynamic> map) {
+  // Factory para construir o objeto a partir de um JSON
+  factory EnderecoModel.fromJson(Map<String, dynamic> json) {
     return EnderecoModel(
-      cep: map['cep'],
-      logradouro: map['logradouro'],
-      complemento: map['complemento'],
+      logradouro: json['logradouro'],
+      bairro: json['bairro'],
+      localidade: json['localidade'],
+      uf: json['uf'],
     );
   }
-
-  factory EnderecoModel.fromJson(String json) =>
-      EnderecoModel.fromMap(jsonDecode(json));
 }
